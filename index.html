@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Ich kann einzelne Noten sehen?!</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="title" id="title_div">
+    <h1 id="title">Noten</h1>
+    <p id="title_desc">... im +- Format und im Abstand von 3s</p>
+  </div>
+
+  <div class="dropzone" id="dropzone">
+    <form class="dropzone_form">
+        <p id="dropzone_desc">csv-Datei hier droppen</p>
+        <input type="file" id="dropzone_csvfile" accept=".csv, .txt">
+        <label class="button" for="dropzone_csvfile"></label>
+      </form>
+  </div>
+
+  <div class="controls" id="controls">
+    <div class="controls_start">
+      <button id="btn_start" class="btn btn_start" title="eingelesene Daten anzeigen">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 0 24 24" width="32">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M8 5v14l11-7z" style="fill:white"/>
+        </svg>
+      </button>
+    </div>
+    <div class="controls_settings">
+      <div class="controls_settings_plusminus">
+        <div>
+          <label class="checkbox_label">
+            <input type="checkbox" id="checkbox_plusminus" checked="checked">
+            <span class="checkbox_checkmark"></span>
+          </label>
+        </div>
+      </div>
+      <div class="controls_settings_seconds">
+        <div>
+          <label class="seconds_label">
+            <input type="number" id="input_seconds" min="1" max="10" value="3" step="1">
+            <span class="seconds"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="datazone" id="datazone_div">
+    <div id="datazone">
+    </div>
+  </div>
+
+  <div class="display_name" id="display_name_div">
+    <div>
+      <p id="display_name">Name, Vorname</p>
+    </div>
+  </div>
+
+  <div class="display_grade" id="display_grade_div">
+    <div>
+      <p id="display_grade">Note</p>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div id="license" class="license">
+    <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="CC BY NC 4.0" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br/><a href="https://www.twitter.com/Mr_DblH" target="_blank">Harald Hentschel</a>
+  </div>
+</div>
+
+<div>
+  <div id="display_control_box" class="display_control_box">
+    <button id="btn_start_display" class="btn_small btn_start_display">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 0 24 24" width="32">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M8 5v14l11-7z" style="fill:white"/>
+        </svg>
+      </button>
+    <canvas id="progress"></canvas>
+  </div>
+</div>
+
+<script src="js/papaparse.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
