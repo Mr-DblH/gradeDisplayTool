@@ -19,7 +19,7 @@ var display_data;
 var type_of_grades = 1; // 0=dezi, 1=+-
 var is_plusminus_checked = true;
 var is_file_dropped = false;
-var seconds = 5;
+var seconds = 3;
 var percent = 0;
 
 var display_index = 0;
@@ -261,7 +261,11 @@ function generate_data_array(data){
   }
   for (i=0; i<data_to_show_gen.length; i++){
     data_to_show_gen[i][0] = data_to_show_gen[i][0].replace(",", "");
-    data_to_show_gen[i][1] = data_to_show_gen[i][1].split(' ')[0];
+    try{
+      data_to_show_gen[i][1] = data_to_show_gen[i][1].split(' ')[0];
+    } catch {
+      data_to_show_gen[i][1] = data_to_show_gen[i][1];
+    }
     var grades = []
     while (data_to_show_gen[i].length>2){
       try{
@@ -408,15 +412,29 @@ function display_grades(display_data_to_show){
     display_grade.classList.add('conceal');
     display_name.classList.add('conceal');
     is_finished = true;
+
+    display_name_div.style.zIndex = "10";
+    display_name_div.addEventListener('click', function(){
+      location.reload(true);
+    });
+    display_grade_div.style.zIndex = "10";
+    display_grade_div.addEventListener('click', function(){
+      location.reload(true);
+    });
   }
   // show data
   var grades = "";
   for (i=0; i<display_data_to_show[display_index][2].length; i++){
-    // console.log(i, "bad?", get_is_bad_grade(display_data_to_show[display_index][2][i]))
-    if (get_is_bad_grade(display_data_to_show[display_index][2][i])){
-      grades = grades + '<span style="color: #a50000;">' + display_data_to_show[display_index][2][i] + '&emsp;</span>'
+    var grade;
+    if (display_data_to_show[display_index][2][i].includes("NaN")){
+      grade = "?"
     } else {
-      grades = grades + display_data_to_show[display_index][2][i] + "&emsp;";
+      grade = display_data_to_show[display_index][2][i];
+    }
+    if (get_is_bad_grade(grade)){
+      grades = grades + '<span style="color: #bf0000;">' + grade + '</span>&emsp;' // red
+    } else {
+      grades = grades + grade + "&emsp;";
     }
   }
   display_name.innerHTML = display_data_to_show[display_index][0] + ", " + display_data_to_show[display_index][1];
@@ -425,8 +443,11 @@ function display_grades(display_data_to_show){
 }
 
 function get_is_bad_grade(grade){
-  grade = String(grade);
-  if (grade.includes("5.") || grade.includes("6") || grade.includes("4-") || grade.includes("4.25")){
+  grade = String(grade.replace(/&nbsp;/g,' ').trim());
+  if (grade=="?"){
+    return true;
+  }
+  if (grade.includes("5.") || grade==("5") || grade.includes("6") || grade==("6") || grade.includes("4-") || grade.includes("4.25")){
     return true;
   } else {
     return false;
