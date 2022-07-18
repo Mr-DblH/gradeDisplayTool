@@ -49,14 +49,14 @@ h1{
   border: 1px dashed #c4c4c4;
   border-radius: 20px;
   padding: 50px;
-  background: #222;
+  background: #111;
   display: inline-block;
   font-size: large;
 }
 
 #dropzone.highlight {
-  border-color: #0066cc;
-  background: #333;
+  border: 2px solid #000;
+  background: #0066cc;
 }
 
 .controls {
@@ -168,7 +168,7 @@ input[type="file"] {
   text-align: left;
   line-height: 1.8;
   position: fixed;
-  left: 25px; bottom: 15px;
+  left: 25px; bottom: 0px;
   color:  #888;
   font-size: small;
 }
@@ -194,11 +194,16 @@ input[type="file"] {
   opacity: 0;
 }
 
+.filedropped{
+  font-weight: bold;
+  color: #0066cc;
+}
+
 
 /* - - - - - button - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .btn{
-  width:  75px;
-  height: 75px;
+  width:  90px;
+  height: 90px;
   margin: 16px;
   border-radius: 50%;
   border: none;
@@ -266,8 +271,8 @@ input[type="file"] {
   position: absolute;
   top: 0;
   left: 0;
-  height:28px;
-  width: 28px;
+  height:36px;
+  width: 36px;
   background-color: #111;
   border-radius: 50%;
   border: 1px solid white;
@@ -285,6 +290,10 @@ input[type="file"] {
   display: none;
 }
 
+.checkbox_label{
+  padding-bottom: 10px;
+}
+
 /* Show the checkmark when checked */
 .checkbox_label input:checked ~ .checkbox_checkmark:after {
   display: block;
@@ -292,23 +301,26 @@ input[type="file"] {
 
 /* Style the checkmark/indicator // Haken */
 .checkbox_label .checkbox_checkmark:after {
-  left: 10px;
-  top: 6px;
-  width: 5px;
-  height: 10px;
+  left: 12px;
+  top: 5px;
+  width: 8px;
+  height: 16px;
   border: solid white;
-  border-width: 0 3px 3px 0;
+  border-width: 0 4px 4px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 /* - - - - - input field seconds - - - - - - - - - - - - - - - - - - - - - - */
+.input_seconds{
+  font-size: medium;
+}
 [type="number"]{
-  background: #0066cc;
+  background: #111;
   border: 1px solid white;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   color: white;
   text-align: center;
 }
@@ -335,28 +347,4 @@ input[type=number] {
 [type="number"]:valid+span:after {
   content: '';
   padding-left: 5px;
-}
-
-
-/* - - - - - progress - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-/*https://stackoverflow.com/questions/69708302/build-semi-arc-circular-progress-bar-in-javascript-and-css*/
-#progress {
-  text-align: left;
-  line-height: 1.8;
-  position: fixed;
-  width:  77px;
-  height: 77px;
-  margin: 16px;
-  left: 19px;
-  bottom: 22px;
-  color:  #888;
-  font-size: small;
-  background-image: conic-gradient(
-    /*green 0deg,*/
-    #0066cc 0deg var(--progress, 0), /* Set via JS */
-    transparent var(--progress, 0) /* Set via JS */
-  );
-  border-radius: 50%;
-  z-index: -100;
-
 }

@@ -10,13 +10,13 @@
 <div class="container">
   <div class="title" id="title_div">
     <h1 id="title">Noten</h1>
-    <p id="title_desc">... im +- Format und im Abstand von 3s</p>
+    <!-- <p id="title_desc"></p> -->
   </div>
 
   <div class="dropzone" id="dropzone">
     <form class="dropzone_form">
-        <p id="dropzone_desc">csv-Datei hier droppen</p>
-        <input type="file" id="dropzone_csvfile" accept=".csv, .txt">
+        <p id="dropzone_desc">csv-Datei hier ablegen</p>
+        <input type="file" id="dropzone_csvfile" accept=".csv, text/csv">
         <label class="button" for="dropzone_csvfile"></label>
       </form>
   </div>
@@ -24,16 +24,16 @@
   <div class="controls" id="controls">
     <div class="controls_start">
       <button id="btn_start" class="btn btn_start" title="eingelesene Daten anzeigen">
-        <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 0 24 24" width="32">
+        <svg xmlns="http://www.w3.org/2000/svg" height="52" viewBox="0 0 24 24" width="52">
           <path d="M0 0h24v24H0z" fill="none"/>
           <path d="M8 5v14l11-7z" style="fill:white"/>
         </svg>
       </button>
     </div>
-    <div class="controls_settings">
+    <div class="controls_settings" >
       <div class="controls_settings_plusminus">
         <div>
-          <label class="checkbox_label">
+          <label class="checkbox_label" id="checkbox_label">
             <input type="checkbox" id="checkbox_plusminus" checked="checked">
             <span class="checkbox_checkmark"></span>
           </label>
@@ -83,7 +83,6 @@
           <path d="M8 5v14l11-7z" style="fill:white"/>
         </svg>
       </button>
-    <canvas id="progress"></canvas>
   </div>
 </div>
 

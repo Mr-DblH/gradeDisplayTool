@@ -61,7 +61,7 @@ let display_progress = document.getElementById('progress');
 // - - - - setUps - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 datazone.classList.add('hide');
 controls.classList.add('conceal');
-title_desc.classList.add('conceal');
+// title_desc.classList.add('conceal');
 
 display_name_div.classList.add('hide');
 display_grade_div.classList.add('hide');
@@ -70,7 +70,7 @@ display_control_box.classList.add('hide');
 set_seconds_in_input_field(seconds);
 
 // - - - - eventListeners - - - - - - - - - - - - - - - - - - - - - - - - - - -
-update_title_description(is_plusminus_checked, seconds)
+// update_title_description(is_plusminus_checked, seconds)
 
 ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
   dropzone.addEventListener(eventName, preventDefaults, false)
@@ -102,12 +102,12 @@ checkbox_plusminus.addEventListener('change', function() {
       generate_table_preview(data_to_show_dezi);
     }
   }
-  update_title_description(is_plusminus_checked, seconds)
+  // update_title_description(is_plusminus_checked, seconds)
 });
 
 input_seconds.addEventListener('change', function(){
   seconds = get_seconds();
-  update_title_description(is_plusminus_checked, seconds);
+  // update_title_description(is_plusminus_checked, seconds);
 });
 
 btn_start.addEventListener('click', function(){
@@ -186,6 +186,7 @@ function upload(evt) {
     data_to_show_plusminus = generate_data_to_show_plusminus(data_to_show_dezi);
     console.log("O - data_to_show_plusminus", data_to_show_plusminus)
 
+    dropzone.classList.add('filedropped');
     is_file_dropped = true;
 
     if (type_of_grades==0){
@@ -224,6 +225,7 @@ function handleFileSelect(evt) {
     data_to_show_plusminus = generate_data_to_show_plusminus(data_to_show_dezi);
     console.log("O - data_to_show_plusminus", data_to_show_plusminus)
 
+    dropzone.classList.add('filedropped');
     is_file_dropped = true;
 
     if (type_of_grades==0){
@@ -283,10 +285,11 @@ function generate_data_array(data){
 
 // sort by name
 function compare( a, b ) {
-  if ( a.Name < b.Name ){
+  console.log(Object.values(a)[0])
+  if ( Object.values(a)[0] < Object.values(b)[0] ){
     return -1;
   }
-  if ( a.Name > b.Name ){
+  if ( Object.values(a)[0] > Object.values(b)[0] ){
     return 1;
   }
   return 0;
@@ -307,7 +310,7 @@ function generate_table_preview(date_to_show_in_table){
         } else {
           var grades = ""
           for (k=0; k<date_to_show_in_table[i][j].length; k++){
-            grades += date_to_show_in_table[i][j][k] + " &emsp; ";
+            grades += date_to_show_in_table[i][j][k] + " &emsp;";
           }
           table_preview += "<td>" + grades.slice(0, -8) + "</td>";
         }
@@ -356,15 +359,15 @@ function generate_data_to_show_plusminus(data_array_dezi_to_change){
 }
 
 // - - - - input - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-function update_title_description(is_plusminus, seconds){
-  var format = "";
-  if (is_plusminus){
-    format = "+  -"
-  } else {
-    format = "dezimal"
-  }
-  title_desc.innerHTML = "[&emsp;" + format + "&emsp; " + String(seconds) + "s &emsp;]"
-}
+// function update_title_description(is_plusminus, seconds){
+//   var format = "";
+//   if (is_plusminus){
+//     format = "+  -"
+//   } else {
+//     format = "dezimal"
+//   }
+//   title_desc.innerHTML = "[&emsp;" + format + "&emsp; " + String(seconds) + "s &emsp;]"
+// }
 
 function set_seconds_in_input_field(seconds){
   input_seconds.value = seconds;
