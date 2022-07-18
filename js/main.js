@@ -61,7 +61,6 @@ let display_progress = document.getElementById('progress');
 // - - - - setUps - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 datazone.classList.add('hide');
 controls.classList.add('conceal');
-// title_desc.classList.add('conceal');
 
 display_name_div.classList.add('hide');
 display_grade_div.classList.add('hide');
@@ -285,7 +284,6 @@ function generate_data_array(data){
 
 // sort by name
 function compare( a, b ) {
-  console.log(Object.values(a)[0])
   if ( Object.values(a)[0] < Object.values(b)[0] ){
     return -1;
   }
@@ -325,7 +323,6 @@ function generate_table_preview(date_to_show_in_table){
   datazone.innerHTML = table_preview;
   datazone.classList.remove('hide');
   controls.classList.remove('conceal');
-  title_desc.classList.remove('conceal');
 }
 
 
@@ -359,15 +356,6 @@ function generate_data_to_show_plusminus(data_array_dezi_to_change){
 }
 
 // - - - - input - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// function update_title_description(is_plusminus, seconds){
-//   var format = "";
-//   if (is_plusminus){
-//     format = "+  -"
-//   } else {
-//     format = "dezimal"
-//   }
-//   title_desc.innerHTML = "[&emsp;" + format + "&emsp; " + String(seconds) + "s &emsp;]"
-// }
 
 function set_seconds_in_input_field(seconds){
   input_seconds.value = seconds;
@@ -440,8 +428,9 @@ function display_grades(display_data_to_show){
       grades = grades + grade + "&emsp;";
     }
   }
+  grades = grades.replace(/(&nbsp;&emsp;$)|(&nbsp;&nbsp;&emsp;$)|(&emsp;$)|(&nbsp;&nbsp;$)|(&nbsp;$)/, "");
   display_name.innerHTML = display_data_to_show[display_index][0] + ", " + display_data_to_show[display_index][1];
-  display_grade.innerHTML = grades.substring(0, grades.length-6);
+  display_grade.innerHTML = grades //.substring(0, grades.length-6);
   display_index++;
 }
 
