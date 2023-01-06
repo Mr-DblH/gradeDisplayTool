@@ -1,7 +1,7 @@
 # gDT - gradeDisplayTool
 ![version](https://img.shields.io/badge/version-1.0-blue) [![license](https://img.shields.io/badge/license-CC%20BY--NC%204.0-green)](https://creativecommons.org/licenses/by-nc/4.0/) ![maintained](https://img.shields.io/badge/maintained%3F-yes-lightgreen?style=flat)
 
-[![twitter](https://img.shields.io/badge/@MrDoubleH-1DA1F2?style=flat&logo=twitter&logoColor=white)](https://www.twitter.com/Mr_DblH)
+[![mastodon](https://img.shields.io/badge/@MrDoubleH-1DA1F2?style=flat&logo=Mastodon&logoColor=white)](https://mastodon.social/@MrDblH)
 
 ## Inhalt
 Noten in Listen eintragen ohne Schnittstellen?
