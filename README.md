@@ -1,5 +1,5 @@
 # gDT - gradeDisplayTool
-![version](https://img.shields.io/badge/version-1.0-blue) [![license](https://img.shields.io/badge/license-CC%20BY--NC%204.0-green)](https://creativecommons.org/licenses/by-nc/4.0/) ![maintained](https://img.shields.io/badge/maintained%3F-yes-lightgreen?style=flat)
+![version](https://img.shields.io/badge/version-1.1-blue) [![license](https://img.shields.io/badge/license-CC%20BY--NC%204.0-green)](https://creativecommons.org/licenses/by-nc/4.0/) ![maintained](https://img.shields.io/badge/maintained%3F-yes-lightgreen?style=flat)
 
 [![mastodon](https://img.shields.io/badge/@MrDoubleH-1DA1F2?style=flat&logo=Mastodon&logoColor=white)](https://mastodon.social/@MrDblH)
 
@@ -12,7 +12,7 @@ Eine Erleichterung ist das _gDT (gradeDisplayTool)_: Es wird (lokal) eine ``inde
 
 Der Aufbau der csv-Datei wird unten erläutert.
 
-Noten schlechter als 4 werden _rot_ hervorgehoben.
+Noten schlechter als oder gleich 4.2 werden _rot_ hervorgehoben.
 
 ## Hinweise und Features
 - **csv-Datei: Aufbau:**
@@ -27,11 +27,11 @@ Noten schlechter als 4 werden _rot_ hervorgehoben.
 
     Dabei ist zu beachten:
     - Die ersten drei Spalten sind verpflichtend.
-    - Überschriftbegriffe sind unerheblich, müssen lediglich vorhanden sein, da mit Kopfzeilen importiert wird.
+    - Überschriftbegriffe sind unerheblich, müssen lediglich vorhanden _und_ verschieden sein, da mit Kopfzeilen importiert wird.
     - Es sind beliebig viele Noten(spalten) möglich; ist lediglich aufgrund der Anzeigenzeile begrenzt.
     - Noten müssen nicht zwei Nachkommastellen besitzen. Für die Umwandlung in +- (z.B. 3,25 <=> 3-) müssen zwei Nachkommastellen vorhanden sein.
     - Noten können mit . oder , als Dezimalzeichen eingegeben werden, solange es nicht mit dem Trennzeichen der csv-Datei interferiert.
-    - Export aus Excel direkt möglich (Excel benutzt ; als Standard-Trennzeichen).
+    - Export aus Excel direkt möglich (Excel benutzt ; (Semikolon) als Standard-Trennzeichen).
     - Daten werden nach (Nach-)Name (bzw. erste Spalte) aufsteigend (A-Z) sortiert.
 
 - **Mit Tasten steuern:**
@@ -47,7 +47,7 @@ Noten schlechter als 4 werden _rot_ hervorgehoben.
 
 - **flugzeugmoduskompatibel**
 
-    Jegliche Dateien wie Icons oder Funktionalitäten sind offline verfügbar und müssen weder vor- noch nachgeladen werden: kein Datenfluss zu googlefonts oder anderen JavaScript-Dateien, keine Tracking jeglicher Art.
+    Jegliche Dateien wie Icons oder Funktionalitäten sind offline verfügbar und müssen weder vor- noch nachgeladen werden: kein Datenfluss zu googlefonts oder anderen JavaScript-Dateien, keine Tracking jeglicher Art. Kein Zugriff auf das Internet.
 
 
 

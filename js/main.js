@@ -6,7 +6,7 @@ Beschreibung
 
 /*
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Harald Hentschel; https://twitter.com/Mr_DblH
+Harald Hentschel; https://mastodon.social/@MrDblH
 Lizenz CC BYNC: https://creativecommons.org/licenses/by-nc/4.0/
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  */
@@ -117,31 +117,48 @@ btn_start.addEventListener('click', function(){
 
 // Leertaste / Pfeil links
 document.addEventListener('keyup', event => {
+  // pause/stop timer
   if (event.code === 'Space') {
-    // console.log('Space pressed')
+    console.log('Space pressed');
     if (is_file_dropped){
       if (is_display_running){
+        console.log("=> paused")
         stop_interval();
         is_display_running = false;
       } else {
+        console.log("=> started again with " + seconds + "s/student")
         start_interval();
         is_display_running = true;
       }
     }
   }
+  // student before
   if (event.code === 'ArrowLeft' || event.code === 'ArrowDown'){
-    // console.log('ArrowLeft|Down pressed')
+    console.log('ArrowLeft|Down pressed');
     if (is_file_dropped){
+      console.log("=> one student back, fresh timer with " + seconds + "s")
+      // reset timer
+      stop_interval();
+      is_display_running = false;
       display_index = display_index-2;
       if (display_index<0){
         display_index = 0;
       }
-      display_grades(display_data);
+      start_interval();
+      is_display_running = true;
     }
   }
+  // next student
   if (event.code === 'ArrowRight' || event.code === 'ArrowUp'){
-    // console.log('ArrowRight|Up pressed')
+    console.log('ArrowRight|Up pressed');
     if (is_file_dropped){
+      console.log("=> next student, fresh timer with " + seconds + "s")
+      // reset timer
+      stop_interval();
+      is_display_running = false;
+      display_index = display_index-1;
+      start_interval();
+      is_display_running = true;
       display_grades(display_data);
     }
   }
@@ -180,10 +197,10 @@ function upload(evt) {
     data_to_show = generate_data_array(data);
 
     data_to_show_dezi = JSON.parse(JSON.stringify(data_to_show)); // deepclone https://stackoverflow.com/questions/597588/how-do-you-clone-an-array-of-objects-in-javascript
-    console.log("O - data_to_show_dezi", data_to_show_dezi);
+    // console.log("O - data_to_show_dezi", data_to_show_dezi);
 
     data_to_show_plusminus = generate_data_to_show_plusminus(data_to_show_dezi);
-    console.log("O - data_to_show_plusminus", data_to_show_plusminus)
+    // console.log("O - data_to_show_plusminus", data_to_show_plusminus)
 
     dropzone.classList.add('filedropped');
     is_file_dropped = true;
@@ -219,10 +236,10 @@ function handleFileSelect(evt) {
     data_to_show = generate_data_array(data);
 
     data_to_show_dezi = JSON.parse(JSON.stringify(data_to_show)); // deepclone https://stackoverflow.com/questions/597588/how-do-you-clone-an-array-of-objects-in-javascript
-    console.log("O - data_to_show_dezi", data_to_show_dezi);
+    // console.log("O - data_to_show_dezi", data_to_show_dezi);
 
     data_to_show_plusminus = generate_data_to_show_plusminus(data_to_show_dezi);
-    console.log("O - data_to_show_plusminus", data_to_show_plusminus)
+    // console.log("O - data_to_show_plusminus", data_to_show_plusminus)
 
     dropzone.classList.add('filedropped');
     is_file_dropped = true;
@@ -278,7 +295,7 @@ function generate_data_array(data){
     }
     data_to_show_gen[i].push(grades.reverse());
   };
-  console.log("O - data_to_show", data_to_show_gen)
+  // console.log("O - data_to_show", data_to_show_gen)
   return data_to_show_gen;
 }
 
@@ -298,19 +315,45 @@ function compare( a, b ) {
 function generate_table_preview(date_to_show_in_table){
   datazone.innerHTML = "";
   var table_preview = "<table id='datazone_table_data_preview'>";
-  var columns = 3;
-  for (i=0; i<5; i++){
-    table_preview += "</tr>";
-    for (j=0; j<3; j++){
+  // console.log(date_to_show_in_table[0][0]); // first row: last name
+  // console.log(date_to_show_in_table[0][1]); // first row: first name
+  // console.log(date_to_show_in_table[0][2]); // first row: array of grades
+  // i rows, j columns (of array); third column is the array of grades
+  for (row=0; row<5; row++){
+    table_preview += "<tr>";
+    for (column=0; column<3; column++){
       try{
-        if (j<2){
-          table_preview += "<td>" + date_to_show_in_table[i][j] + "</td>";
-        } else {
+        // get last and first name
+        if (column<2){
+          table_preview += "<td>" + date_to_show_in_table[row][column] + "</td>";
+        }
+        // get grades
+        else {
           var grades = ""
-          for (k=0; k<date_to_show_in_table[i][j].length; k++){
-            grades += date_to_show_in_table[i][j][k] + " &emsp;";
+          for (grade_number=0; grade_number<date_to_show_in_table[row][column].length; grade_number++){
+            grade = date_to_show_in_table[row][column][grade_number].replace("&nbsp;", "").replace("&nbsp;", "").replace("&nbsp;", "");
+            // plus-minus-version
+            if (is_plusminus_checked==true){
+              if (grade.length==1){
+                grades += grade + "&nbsp;&nbsp;&nbsp;&nbsp;";
+              }
+              else if (grade.length==2){
+                grades += grade + "&nbsp;&nbsp;&nbsp;";
+              }
+              else if (grade.length==3){
+                grades += grade + "&nbsp;&nbsp;";
+              }
+              else {
+                grades += grade + "&nbsp;&nbsp;";
+              }
+            }
+            // dezimal version
+            else {
+              grades += grade + "&nbsp;&nbsp;";
+            }
           }
-          table_preview += "<td>" + grades.slice(0, -8) + "</td>";
+          // console.log(grades)
+          table_preview += "<td>" + grades + "</td>";
         }
       } catch {
         console.log("Index zu groß")
@@ -439,9 +482,17 @@ function get_is_bad_grade(grade){
   if (grade=="?"){
     return true;
   }
-  if (grade.includes("5.") || grade==("5") || grade.includes("6") || grade==("6") || grade.includes("4-") || grade.includes("4.25")){
+  // if (grade.includes("5-") || grade==("5.") || grade.includes("6.") || grade==("6") || grade.includes("4-") || grade.includes("4.25")){
+  // 4-, 4-5, +5, 5-, 5-6, +6
+  if (grade.includes("4-") || grade.includes("+5") || grade.includes("5-") || grade.includes("+6")){
     return true;
-  } else {
+  }
+  // 5, 6 and includes 4.2 till 4.9, 5.
+  if (grade==("5") || grade==("6") || grade.includes("4.2") || grade.includes("4.3") || grade.includes("4.4") || grade.includes("4.5") || grade.includes("4.6") || grade.includes("4.7") || grade.includes("4.8") || grade.includes("4.9") || grade.includes("5.") || grade.includes("6.")){
+    return true;
+  }
+
+  else {
     return false;
   }
 }
