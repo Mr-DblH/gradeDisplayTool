@@ -1,9 +1,9 @@
-Name;Vorname;mdl;note1;note2
-Zuf;Znn;1,60;2,5;4,1
-Bär;Barmen Sophie;5,5;4;6
-Cing;Cd;1;1;5,75
-Dteiner;Derold;1,25;5,75;4,2
-Ehr;Elaus;3,75;6;3,3
-For;Foni;3;3,5;4,3
-Gola;Gom;3;2,25;4,4
-Hacht;Hndi;3;2,25;4,9
+Name;Vorname;note1;note2;mdl1;mdl2
+Zuf;Znn;1,60;2,5;4,1;1
+Bär;Barmen Sophie;5,5;4;6;5,25
+Cing;Cd;1;1;5,75;3
+Dteiner;Derold;1,25;5,75;4,2;3,1
+Ehr;Elaus;3,75;6;3,3;1,1
+For;Foni;3;3,5;4,3;2
+Gola;Gom;3;2,25;4,4;4
+Hacht;Hndi;3;2,25;4,9;2,5

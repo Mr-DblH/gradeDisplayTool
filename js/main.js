@@ -19,7 +19,7 @@ var display_data;
 var type_of_grades = 1; // 0=dezi, 1=+-
 var is_plusminus_checked = true;
 var is_file_dropped = false;
-var seconds = 3;
+var seconds = 5;
 var percent = 0;
 
 var display_index = 0;
