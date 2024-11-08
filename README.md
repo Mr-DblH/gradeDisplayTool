@@ -52,7 +52,7 @@ Noten schlechter als oder gleich 4.2 werden _rot_ hervorgehoben.
 
 
 ## Installation
-Das gitHub-Projekt clonen oder die zip-Datei herunterladen. Die zip-Datei entpacken und danach die ``index.html`` öffnen.
+Das gitHub-Projekt clonen oder die zip-Datei herunterladen. Die zip-Datei entpacken und danach die ``index.html`` öffnen. Das Projekt ist auf [hier](https://github.com/Mr-DblH/gradeDisplayTool) zu finden.
 
 
 ## Lizenz
